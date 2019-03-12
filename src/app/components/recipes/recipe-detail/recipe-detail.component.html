@@ -1,25 +1,27 @@
 <div class="row">
   <div class="col-12">
-    <img src="" class="img-fluid" alt="">
+    <img [src]="recipe.imagePath"
+         class="img-fluid" alt="{{ recipe.name }}"
+         style="max-height: 250px;" />
   </div>
 </div>
 
 <div class="row">
   <div class="col-12">
-    <h1>Recipe Name</h1>
+    <h1>{{ recipe.name }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-12">
-    <div class="btn-group">
-      <button class="btn btn-secondary dropdown-toggle"
+    <div class="btn-group" appDropdown #r="appDropDown">
+      <button class="btn btn-primary btn-sm dropdown-toggle"
               type="button">
         Manage <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Add ingredients</a></li>
-        <li><a href="#">Edit recipe</a></li>
-        <li><a href="#">Delete recipe</a></li>
+      <ul class="dropdown-menu" [ngClass]="{'show':r.isOpen}">
+        <li class="dropdown-item"><a href="#">Add ingredients</a></li>
+        <li class="dropdown-item"><a href="#">Edit recipe</a></li>
+        <li class="dropdown-item"><a href="#">Delete recipe</a></li>
       </ul>
 
     </div>
@@ -27,7 +29,7 @@
 </div>
 <div class="row">
   <div class="col-12">
-    Description
+    {{ recipe.description }}
   </div>
 </div>
 <div class="row">

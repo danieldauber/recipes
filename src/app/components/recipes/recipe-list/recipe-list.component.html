@@ -6,17 +6,10 @@
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <a href="#" class="list-group-item d-flex clearfix my-2"
-           *ngFor="let recipe of recipes">
-            <div class="flex-fill">
-                <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-                <p class="list-group-item-text">{{ recipe.description }}</p>
-            </div>
-            <div class="">
-                <img src="{{ recipe.imagePath }}"
-                     alt="{{ recipe.name }}" class="img-responsive" style="max-height: 80px">
-            </div>
-        </a>
-        <app-recipe-item></app-recipe-item>
+        <app-recipe-item
+                *ngFor="let recipe of recipes"
+                [recipe]="recipe"
+                (recipeSelected)="onRecipeSelected(recipe)"
+        ></app-recipe-item>
     </div>
 </div>
