@@ -1,18 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter} from '@angular/core';
 import {Recipe} from "../recipe.model";
+import {ShoppingListService} from "../../shopping-list/shopping-list.service";
+import {Ingredient} from "../../shared/ingredient.model";
+import {RecipesService} from "../recipe.service";
 
 @Component({
-  selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+    selector: 'app-recipe-detail',
+    templateUrl: './recipe-detail.component.html',
+    styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
+    ingredientsChanged = new EventEmitter<Ingredient[]>();
 
-  @Input() recipe: Recipe;
+    @Input() recipe: Recipe;
+    // ingredientsList : Ingredient[];
 
-  constructor() { }
+    constructor(private shoppingListService : ShoppingListService, private recipeService : RecipesService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    addShoppingList() {
+        this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    }
 }
